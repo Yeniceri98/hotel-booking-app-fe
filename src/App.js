@@ -1,9 +1,10 @@
 import './App.css';
+import AddRoom from './components/rooms/AddRoom';
 
 function App() {
 	return (
 		<div className="App">
-			<p>Initial Code</p>
+			<AddRoom />
 		</div>
 	);
 }
