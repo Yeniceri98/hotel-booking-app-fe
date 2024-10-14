@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { addRoom } from '../utils/ApiFunctions';
 import RoomTypeSelector from '../common/RoomTypeSelector';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -47,6 +47,11 @@ const AddRoom = () => {
 		} catch (error) {
 			setErrorMessage(error.message || 'Failed to add room');
 		}
+
+		setTimeout(() => {
+			setSuccessMessage('');
+			setErrorMessage('');
+		}, 3000);
 	};
 
 	return (
