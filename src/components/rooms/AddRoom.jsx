@@ -38,16 +38,14 @@ const AddRoom = () => {
 			const result = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice);
 
 			if (result) {
-				console.log('Room added successfully');
 				setSuccessMessage('Room added successfully');
 				setNewRoom({ photo: '', roomType: '', roomPrice: '' });
 				setImagePreview('');
-				setErrorMessage('');
 			} else {
 				setErrorMessage('Failed to add room');
 			}
 		} catch (error) {
-			setErrorMessage(error.message);
+			setErrorMessage(error.message || 'Failed to add room');
 		}
 	};
 
@@ -57,7 +55,7 @@ const AddRoom = () => {
 				<div className="row justify-content-center">
 					<div className="col-md-6 col-lg-8 bg-light p-4 rounded-3">
 						<h2 className="mt-5 mb-2">Add a New Room</h2>
-						<form action="" onSubmit={handleSubmit}>
+						<form onSubmit={handleSubmit}>
 							<div className="mb-3 mt-4">
 								<label htmlFor="roomType" className="form-label">
 									Room Type
@@ -109,6 +107,12 @@ const AddRoom = () => {
 									Add Room
 								</button>
 							</div>
+							{successMessage && (
+								<div className="alert alert-success mt-3">{successMessage}</div>
+							)}
+							{errorMessage && (
+								<div className="alert alert-danger mt-3">{errorMessage}</div>
+							)}
 						</form>
 					</div>
 				</div>

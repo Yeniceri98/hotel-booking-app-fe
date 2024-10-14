@@ -33,14 +33,14 @@ const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
 					className="form-select"
 					value={newRoom.roomType}
 					onChange={(e) => {
-						if (e.target.value === 'Add New Room Type') {
+						if (e.target.value === 'Add New') {
 							setShowNewRoomTypeInput(true);
 						} else {
 							handleRoomInputChange(e);
 						}
 					}}>
 					<option value="">Select a room type</option>
-					<option value="Add New">Add New</option>
+					<option value="Add New">Add New Room Type</option>
 					{roomTypes.map((type, index) => (
 						<option key={index} value={type}>
 							{type}
@@ -51,7 +51,7 @@ const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
 				<div>Loading room types...</div>
 			)}
 			{showNewRoomTypeInput && (
-				<div clasName="input-group mt-2">
+				<div className="input-group mt-2">
 					<input
 						className="form-control"
 						type="text"
