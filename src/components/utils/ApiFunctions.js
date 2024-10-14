@@ -13,7 +13,7 @@ export async function addRoom(photo, roomType, roomPrice) {
 	try {
 		const response = await api.post('/rooms/add-room', formData);
 		console.log('API response:', response);
-		return response.status === 201;
+		return response.status === 204;
 	} catch (error) {
 		console.error('API error:', error);
 		return false;

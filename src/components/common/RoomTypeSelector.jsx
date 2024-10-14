@@ -8,8 +8,7 @@ const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
 
 	useEffect(() => {
 		getRoomTypes().then((data) => {
-			// Ensure roomTypes is an array of strings
-			setRoomTypes(data.map((room) => room.roomType));
+			setRoomTypes(data);
 		});
 	}, []);
 
