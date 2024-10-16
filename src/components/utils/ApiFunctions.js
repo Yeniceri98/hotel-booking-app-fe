@@ -28,3 +28,33 @@ export const getRoomTypes = async () => {
 		throw new Error('Failed to fetch room types');
 	}
 };
+
+export const getAllRooms = async () => {
+	try {
+		const response = await api.get('/rooms/all-rooms');
+		return response.data;
+	} catch (error) {
+		throw new Error('Failed to fetch all rooms');
+	}
+};
+
+export const getAvailableRooms = async () => {
+	try {
+		const response = await api.get('/rooms/available-rooms');
+		return response.data;
+	} catch (error) {
+		throw new Error('Failed to fetch available rooms');
+	}
+};
+
+export const deleteRoom = async (id) => {
+	try {
+		const response = await api.delete(`/rooms/delete-room/${id}`);
+		if (response.status !== 200) {
+			throw new Error(`Error deleting room: ${response.statusText}`);
+		}
+		return response;
+	} catch (error) {
+		throw error;
+	}
+};
