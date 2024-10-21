@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { updateRoom, getRoomById } from '../utils/ApiFunctions';
+import React, { useState, useEffect } from 'react';
+import { updateRoom, getRoomById, getAllRooms } from '../utils/ApiFunctions';
 import { useParams } from 'react-router-dom';
 import RoomTypeSelector from '../common/RoomTypeSelector';
 
@@ -16,6 +16,20 @@ const EditRoom = () => {
 
 	// Dynamic Routing
 	const { roomId } = useParams();
+
+	useEffect(() => {
+		const fetchRoom = async () => {
+			try {
+				const roomData = await getRoomById(roomId);
+				setRoom(roomData);
+				setImagePreview(roomData.photo);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
+		fetchRoom();
+	}, [roomId]);
 
 	const handleImageChange = (e) => {
 		const selectedImage = e.target.files[0];
