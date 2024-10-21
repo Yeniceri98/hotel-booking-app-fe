@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { addRoom } from '../utils/ApiFunctions';
 import RoomTypeSelector from '../common/RoomTypeSelector';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AddRoom = () => {
@@ -113,6 +114,11 @@ const AddRoom = () => {
 									Add Room
 								</button>
 							</div>
+							<Link to="/existing-rooms">
+								<button type="button" className="btn btn-secondary mt-4">
+									Go Back to Existing Rooms
+								</button>
+							</Link>
 							{errorMessage && (
 								<div className="alert alert-danger mt-3">{errorMessage}</div>
 							)}
