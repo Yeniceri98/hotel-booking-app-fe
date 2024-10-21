@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState, useEffect } from 'react';
-import { updateRoom, getRoomById, getAllRooms } from '../utils/ApiFunctions';
+import { updateRoom, getRoomById, getRoomPhotoByRoomId } from '../utils/ApiFunctions';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import RoomTypeSelector from '../common/RoomTypeSelector';
+import { Buffer } from 'buffer';
 
 const EditRoom = () => {
 	const [room, setRoom] = useState({
@@ -23,8 +25,9 @@ const EditRoom = () => {
 		const fetchRoom = async () => {
 			try {
 				const roomData = await getRoomById(roomId);
+				const photo = await getRoomPhotoByRoomId(roomId);
 				setRoom(roomData);
-				setImagePreview(roomData.photo);
+				setImagePreview(photo);
 			} catch (error) {
 				console.error(error);
 			}
@@ -35,7 +38,10 @@ const EditRoom = () => {
 
 	const handleImageChange = (e) => {
 		const selectedImage = e.target.files[0];
-		setImagePreview(URL.createObjectURL(selectedImage));
+		const reader = new FileReader();
+		reader.onload = () => {
+			setImagePreview(reader.result);
+		};
 		setRoom({ ...room, photo: selectedImage });
 	};
 
@@ -115,18 +121,18 @@ const EditRoom = () => {
 									id="photo"
 									onChange={handleImageChange}
 								/>
-								{imagePreview && (
-									<div className="mt-2">
-										<img
-											src={imagePreview}
-											alt="Room"
-											className="img-fluid"
-											style={{ maxWidth: '400px', maxHeight: '400px' }}
-										/>
-									</div>
-								)}
+								<div className="mt-4 d-flex justify-content-center">
+									<img
+										src={`data:image/jpeg;base64,${Buffer.from(imagePreview).toString(
+											'base64'
+										)}`}
+										alt="Room Photo"
+										width={400}
+										height={400}
+									/>
+								</div>
 							</div>
-							<div className="d-grid d-flex justify-content-center mt-5">
+							<div className="d-grid d-flex justify-content-center mt-4">
 								<button type="submit" className="btn btn-primary">
 									Update
 								</button>
