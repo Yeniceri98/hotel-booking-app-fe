@@ -84,3 +84,14 @@ export const getRoomById = async (roomId) => {
 		throw new Error('Failed to fetch room details');
 	}
 };
+
+export const getRoomPhotoByRoomId = async (roomId) => {
+	try {
+		const response = await api.get(`/room-photo/${roomId}`, {
+			responseType: 'arraybuffer',
+		});
+		return new Uint8Array(response.data);
+	} catch (error) {
+		throw new Error('Failed to fetch room photo');
+	}
+};
