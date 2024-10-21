@@ -3,9 +3,8 @@ import { deleteRoom, getAllRooms } from '../utils/ApiFunctions';
 import { Col, Row } from 'react-bootstrap';
 import RoomFilter from '../common/RoomFilter';
 import RoomPaginator from '../common/RoomPaginator';
-import { FaEdit, FaEye, FaPlus, FaTrashAlt } from 'react-icons/fa';
+import { FaEdit, FaPlus, FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { FaE } from 'react-icons/fa6';
 
 const ExistingRooms = () => {
 	const [rooms, setRooms] = useState([{ id: '', roomType: '', roomPrice: '' }]);
