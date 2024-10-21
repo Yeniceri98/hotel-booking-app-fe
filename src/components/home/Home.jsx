@@ -1,7 +1,9 @@
 const Home = () => {
 	return (
-		<div>
-			<h2>Welcome to the Home Page</h2>
+		<div
+			className="d-flex justify-content-center align-items-center"
+			style={{ height: '100vh' }}>
+			<h2>Welcome to ASY Hotel</h2>
 		</div>
 	);
 };
