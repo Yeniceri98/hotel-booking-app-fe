@@ -91,7 +91,7 @@ const ExistingRooms = () => {
 							</Col>
 						</Row>
 
-						<table className="table table-bordered table-hover">
+						<table className="table table-bordered table-hover mt-4">
 							<thead>
 								<tr className="text-center">
 									<th>ID</th>
@@ -131,9 +131,11 @@ const ExistingRooms = () => {
 					</section>
 
 					{successMessage && (
-						<div className="alert alert-success mt-3">{successMessage}</div>
+						<div className="alert alert-success mt-2 text-center">{successMessage}</div>
 					)}
-					{errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+					{errorMessage && (
+						<div className="alert alert-danger mt-2 text-center">{errorMessage}</div>
+					)}
 				</>
 			)}
 		</>

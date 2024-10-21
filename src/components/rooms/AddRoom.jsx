@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { addRoom } from '../utils/ApiFunctions';
 import RoomTypeSelector from '../common/RoomTypeSelector';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AddRoom = () => {
@@ -11,8 +12,9 @@ const AddRoom = () => {
 	});
 
 	const [imagePreview, setImagePreview] = useState('');
-	const [successMessage, setSuccessMessage] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
+
+	const navigate = useNavigate();
 
 	const handleRoomInputChange = (e) => {
 		const { name, value } = e.target;
@@ -38,9 +40,9 @@ const AddRoom = () => {
 			const result = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice);
 
 			if (result) {
-				setSuccessMessage('Room added successfully');
 				setNewRoom({ photo: '', roomType: '', roomPrice: '' });
 				setImagePreview('');
+				navigate('/existing-rooms');
 			} else {
 				setErrorMessage('Failed to add room');
 			}
@@ -49,7 +51,6 @@ const AddRoom = () => {
 		}
 
 		setTimeout(() => {
-			setSuccessMessage('');
 			setErrorMessage('');
 		}, 3000);
 	};
@@ -61,7 +62,7 @@ const AddRoom = () => {
 					<div className="col-md-6 col-lg-8 bg-light p-4 rounded-3 text-center">
 						<h2 className="mt-5 mb-2">Add a New Room</h2>
 						<form onSubmit={handleSubmit}>
-							<div className="mb-3 mt-4">
+							<div className="mb-4 mt-4">
 								<label htmlFor="roomType" className="form-label">
 									Room Type
 								</label>
@@ -72,7 +73,7 @@ const AddRoom = () => {
 									/>
 								</div>
 							</div>
-							<div className="mb-3 mt-4">
+							<div className="mb-4 mt-4">
 								<label htmlFor="roomPrice" className="form-label">
 									Room Price
 								</label>
@@ -86,7 +87,7 @@ const AddRoom = () => {
 									required
 								/>
 							</div>
-							<div className="mb-3 mt-4">
+							<div className="mb-4 mt-4">
 								<label htmlFor="photo" className="form-label">
 									Room Photo
 								</label>
@@ -97,12 +98,12 @@ const AddRoom = () => {
 									onChange={handleImageChange}
 								/>
 								{imagePreview && (
-									<div className="mt-2">
+									<div className="mt-4">
 										<img
 											src={imagePreview}
 											alt="Room"
 											className="img-fluid"
-											style={{ maxWidth: '400px', maxHeight: '400px' }}
+											style={{ maxWidth: '100%', maxHeight: '100%' }}
 										/>
 									</div>
 								)}
@@ -112,9 +113,6 @@ const AddRoom = () => {
 									Add Room
 								</button>
 							</div>
-							{successMessage && (
-								<div className="alert alert-success mt-3">{successMessage}</div>
-							)}
 							{errorMessage && (
 								<div className="alert alert-danger mt-3">{errorMessage}</div>
 							)}
