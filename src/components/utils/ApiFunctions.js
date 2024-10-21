@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-	baseURL: 'http://localhost:8080/api',
+	baseURL: 'http://localhost:8080/api/rooms',
 });
 
 export async function addRoom(photo, roomType, roomPrice) {
@@ -11,7 +11,7 @@ export async function addRoom(photo, roomType, roomPrice) {
 	formData.append('roomPrice', roomPrice);
 
 	try {
-		const response = await api.post('/rooms/add-room', formData);
+		const response = await api.post('/add-room', formData);
 		console.log('API response:', response);
 		return response.status === 201;
 	} catch (error) {
@@ -22,7 +22,7 @@ export async function addRoom(photo, roomType, roomPrice) {
 
 export const getRoomTypes = async () => {
 	try {
-		const response = await api.get('/rooms/room-types');
+		const response = await api.get('/room-types');
 		return response.data;
 	} catch (error) {
 		throw new Error('Failed to fetch room types');
@@ -31,7 +31,7 @@ export const getRoomTypes = async () => {
 
 export const getAllRooms = async () => {
 	try {
-		const response = await api.get('/rooms/all-rooms');
+		const response = await api.get('/all-rooms');
 		return response.data;
 	} catch (error) {
 		throw new Error('Failed to fetch all rooms');
@@ -40,7 +40,7 @@ export const getAllRooms = async () => {
 
 export const getAvailableRooms = async () => {
 	try {
-		const response = await api.get('/rooms/available-rooms');
+		const response = await api.get('/available-rooms');
 		return response.data;
 	} catch (error) {
 		throw new Error('Failed to fetch available rooms');
@@ -49,7 +49,7 @@ export const getAvailableRooms = async () => {
 
 export const deleteRoom = async (id) => {
 	try {
-		const response = await api.delete(`/rooms/delete-room/${id}`);
+		const response = await api.delete(`/delete-room/${id}`);
 		if (response.status !== 200) {
 			throw new Error(`Error deleting room: ${response.statusText}`);
 		}
@@ -66,7 +66,7 @@ export const updateRoom = async (roomId, roomData) => {
 	formData.append('roomPrice', roomData.roomPrice);
 
 	try {
-		const response = await api.put(`/rooms/update-room/${roomId}`, formData);
+		const response = await api.put(`/update-room/${roomId}`, formData);
 		if (response.status !== 200) {
 			throw new Error(`Error updating room: ${response.statusText}`);
 		}
@@ -78,7 +78,7 @@ export const updateRoom = async (roomId, roomData) => {
 
 export const getRoomById = async (roomId) => {
 	try {
-		const response = await api.get(`/rooms/room/${roomId}`);
+		const response = await api.get(`/room/${roomId}`);
 		return response.data;
 	} catch (error) {
 		throw new Error('Failed to fetch room details');
