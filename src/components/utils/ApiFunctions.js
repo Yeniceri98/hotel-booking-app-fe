@@ -66,7 +66,7 @@ export const updateRoom = async (roomId, roomData) => {
 	formData.append('roomPrice', roomData.roomPrice);
 
 	try {
-		const response = await api.put(`/update-room/${roomId}`, formData);
+		const response = await api.put(`/room/${roomId}`, formData);
 		if (response.status !== 200) {
 			throw new Error(`Error updating room: ${response.statusText}`);
 		}
