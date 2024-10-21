@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { updateRoom, getRoomById, getAllRooms } from '../utils/ApiFunctions';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import RoomTypeSelector from '../common/RoomTypeSelector';
 
 const EditRoom = () => {
@@ -11,11 +12,12 @@ const EditRoom = () => {
 	});
 
 	const [imagePreview, setImagePreview] = useState('');
-	const [successMessage, setSuccessMessage] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
 
 	// Dynamic Routing
 	const { roomId } = useParams();
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchRoom = async () => {
@@ -55,10 +57,10 @@ const EditRoom = () => {
 			const result = await updateRoom(roomId, room);
 
 			if (result) {
-				setSuccessMessage('Room updated successfully');
 				const updatedRoom = await getRoomById(roomId);
 				setRoom(updatedRoom);
 				setImagePreview(updateRoom.photo);
+				navigate('/existing-rooms');
 			} else {
 				setErrorMessage('Failed to add room');
 			}
@@ -67,7 +69,6 @@ const EditRoom = () => {
 		}
 
 		setTimeout(() => {
-			setSuccessMessage('');
 			setErrorMessage('');
 		}, 3000);
 	};
@@ -77,7 +78,7 @@ const EditRoom = () => {
 			<section className="container mt-5 mb-5">
 				<div className="row justify-content-center">
 					<div className="col-md-6 col-lg-8 bg-light p-4 rounded-3">
-						<h2 className="mt-5 mb-2">Add a New Room</h2>
+						<h2 className="mt-5 mb-2 text-center">Update the Room</h2>
 						<form onSubmit={handleSubmit}>
 							<div className="mb-3 mt-4">
 								<label htmlFor="roomType" className="form-label">
@@ -127,12 +128,9 @@ const EditRoom = () => {
 							</div>
 							<div className="d-grid d-flex justify-content-center mt-5">
 								<button type="submit" className="btn btn-primary">
-									Add Room
+									Update
 								</button>
 							</div>
-							{successMessage && (
-								<div className="alert alert-success mt-3">{successMessage}</div>
-							)}
 							{errorMessage && (
 								<div className="alert alert-danger mt-3">{errorMessage}</div>
 							)}

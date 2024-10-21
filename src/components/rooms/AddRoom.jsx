@@ -58,7 +58,7 @@ const AddRoom = () => {
 		<>
 			<section className="container mt-5 mb-5">
 				<div className="row justify-content-center">
-					<div className="col-md-6 col-lg-8 bg-light p-4 rounded-3">
+					<div className="col-md-6 col-lg-8 bg-light p-4 rounded-3 text-center">
 						<h2 className="mt-5 mb-2">Add a New Room</h2>
 						<form onSubmit={handleSubmit}>
 							<div className="mb-3 mt-4">
