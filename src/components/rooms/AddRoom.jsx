@@ -37,6 +37,11 @@ const AddRoom = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		if (!newRoom.roomType || !newRoom.roomPrice) {
+			alert('Room Type and Room Price fields are required');
+			return;
+		}
+
 		try {
 			const result = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice);
 
