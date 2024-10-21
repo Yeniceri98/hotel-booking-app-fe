@@ -78,15 +78,12 @@ const ExistingRooms = () => {
 			) : (
 				<>
 					<section className="mt-5 mb-5 container">
-						<div className="d-flex justify-content-between mb-3 mt-5">
-							<h2>Existing Rooms</h2>
-						</div>
+						<h2 className="mt-4 mb-4 text-center">Existing Rooms</h2>
 
 						<Row>
 							<Col md={6} className="mb-2 md-mb-0">
 								<RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
 							</Col>
-
 							<Col md={6} className="d-flex justify-content-end mb-4 md-mb-0">
 								<Link to={'/add-room'}>
 									<FaPlus /> Add Room
@@ -103,7 +100,6 @@ const ExistingRooms = () => {
 									<th>Actions</th>
 								</tr>
 							</thead>
-
 							<tbody>
 								{currentRooms.map((room) => (
 									<tr key={room.id} className="text-center">
@@ -126,12 +122,14 @@ const ExistingRooms = () => {
 								))}
 							</tbody>
 						</table>
+
 						<RoomPaginator
 							currentPage={currentPage}
 							totalPages={calculateTotalPages(filteredRooms, roomsPerPage, rooms)}
 							onPageChange={handlePaginationClick}
 						/>
 					</section>
+
 					{successMessage && (
 						<div className="alert alert-success mt-3">{successMessage}</div>
 					)}
