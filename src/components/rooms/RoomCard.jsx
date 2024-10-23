@@ -17,7 +17,7 @@ const RoomCard = ({ room }) => {
 			});
 	}, [room.id]);
 	return (
-		<Col key={room.id} className="mb-4 mt-4 xs-12 md-6">
+		<Col key={room.id} className="mb-4 mt-4" xs={12}>
 			<Card>
 				<CardBody className="d-flex flex-wrap align-items-center justify-content-center">
 					<div className="flex-shrink-0 mr-3 mb-3">
@@ -36,7 +36,7 @@ const RoomCard = ({ room }) => {
 						<CardText>Some room information goes here for the guests to see</CardText>
 					</div>
 					<div className="flex-shrink-0 mt-3">
-						<Link to={`/bookings/${room.id}`} className="btn btn-hotel btn-sm">
+						<Link to={`/bookings/${room.id}`} className="btn btn-primary">
 							Book Now
 						</Link>
 					</div>
