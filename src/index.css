@@ -65,13 +65,16 @@ body {
 	outline-style: solid;
 }
 
-.hotel-color {
-	color: rgb(169, 77, 123);
+.card .hotel-color {
+	color: rgb(169, 58, 114);
+	font-weight: bold;
 }
-.room-price {
-	color: darkgoldenrod;
+
+.card .room-price {
+	color: rgb(9, 12, 194);
 	font-family: 'Courier New', Courier, monospace;
 	font-size: medium;
+	font-weight: bold;
 }
 .vertical-rule {
 	border-left: '0.5px solid black';
