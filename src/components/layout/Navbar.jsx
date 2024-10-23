@@ -31,6 +31,11 @@ const Navbar = () => {
 								Add Room
 							</Link>
 						</li>
+						<li className="nav-item">
+							<Link to="/browse-all-rooms" className="nav-link text-light">
+								Browse All Rooms
+							</Link>
+						</li>
 					</ul>
 				</div>
 			</div>
