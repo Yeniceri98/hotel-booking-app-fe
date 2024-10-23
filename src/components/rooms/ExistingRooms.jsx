@@ -105,7 +105,7 @@ const ExistingRooms = () => {
 									<tr key={room.id} className="text-center">
 										<td>{room.id}</td>
 										<td>{room.roomType}</td>
-										<td>{room.roomPrice}</td>
+										<td>${room.roomPrice}</td>
 										<td className="gap-2 d-flex justify-content-center">
 											<Link to={`/edit-room/${room.id}`}>
 												<span className="btn btn-warning btn-sm">
