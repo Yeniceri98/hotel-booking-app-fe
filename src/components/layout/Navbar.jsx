@@ -1,8 +1,19 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const Navbar = () => {
+	const [showAccount, setShowAccount] = useState(false);
+
+	const handleAccountClick = () => {
+		setShowAccount(!showAccount);
+	};
+
+	const isLoggedIn = localStorage.getItem('token');
+	const userRole = localStorage.getItem('userRole');
+
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div className="container-fluid">
@@ -35,6 +46,45 @@ const Navbar = () => {
 							<Link to="/browse-all-rooms" className="nav-link text-light">
 								Browse All Rooms
 							</Link>
+						</li>
+						<li className="nav-item">
+							<Link to="/admin" className="nav-link text-light">
+								Admin
+							</Link>
+						</li>
+					</ul>
+					<ul className="d-flex navbar-nav">
+						<li className="nav-item">
+							<Link to="/find-booking" className="nav-link text-light">
+								Find my booking
+							</Link>
+						</li>
+						<li className="nav-item dropdown">
+							<a
+								className={`nav-link text-light dropdown-toggle ${
+									showAccount ? 'show' : ''
+								}`}
+								href="#"
+								role="button"
+								data-bs-toggle="dropdown"
+								aria-expanded="false"
+								onClick={handleAccountClick}>
+								Account
+							</a>
+							<ul
+								className={`dropdown-menu text-dark ${showAccount ? 'show' : ''}`}
+								aria-labelledby="navbarDropdown">
+								{isLoggedIn ? (
+									// <Logout />
+									<p>logout</p>
+								) : (
+									<li>
+										<Link to="/login" className="nav-link text-dark">
+											Login
+										</Link>
+									</li>
+								)}
+							</ul>
 						</li>
 					</ul>
 				</div>
