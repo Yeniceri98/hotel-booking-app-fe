@@ -41,7 +41,7 @@ const HomePage = () => {
 			<header className="bg-dark text-light p-5 text-center">
 				<h1 className="display-4 font-weight-bold">Welcome to ASY Hotel</h1>
 				<p className="lead mb-4">Find the perfect room for your stay with us.</p>
-				<Link to="/rooms" className="btn btn-primary btn-lg shadow">
+				<Link to="/browse-all-rooms" className="btn btn-primary btn-lg shadow">
 					Browse All Rooms
 				</Link>
 			</header>

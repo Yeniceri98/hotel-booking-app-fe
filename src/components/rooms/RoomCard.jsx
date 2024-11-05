@@ -36,7 +36,7 @@ const RoomCard = ({ room }) => {
 						<CardText>Some room information goes here for the guests to see</CardText>
 					</div>
 					<div className="flex-shrink-0 mt-3">
-						<Link to={`/bookings/${room.id}`} className="btn btn-primary">
+						<Link to={`/book-room/${room.id}`} className="btn btn-primary">
 							Book Now
 						</Link>
 					</div>
