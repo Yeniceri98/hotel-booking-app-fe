@@ -9,6 +9,8 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import RoomList from './components/rooms/RoomList';
 import Admin from './components/admin/Admin';
+import BookingForm from './components/booking/BookingForm';
+import BookingSuccess from './components/booking/BookingSuccess';
 
 const App = () => {
 	return (
@@ -20,6 +22,8 @@ const App = () => {
 				<Route path="/existing-rooms" element={<ExistingRooms />} />
 				<Route path="/add-room" element={<AddRoom />} />
 				<Route path="/browse-all-rooms" element={<RoomList />} />
+				<Route path="/book-room/:roomId" element={<BookingForm />} />
+				<Route path="/booking-success" element={<BookingSuccess />} />
 				<Route path="/admin" element={<Admin />} />
 			</Routes>
 			<Footer />
