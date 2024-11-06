@@ -4,6 +4,14 @@ export const api = axios.create({
 	baseURL: 'http://localhost:8080/api',
 });
 
+const formatDate = (dateString) => {
+	const date = new Date(dateString);
+	const day = String(date.getDate()).padStart(2, '0');
+	const month = String(date.getMonth() + 1).padStart(2, '0');
+	const year = date.getFullYear();
+	return `${day}-${month}-${year}`;
+};
+
 export async function addRoom(photo, roomType, roomPrice) {
 	const formData = new FormData();
 	formData.append('photo', photo);
@@ -12,7 +20,6 @@ export async function addRoom(photo, roomType, roomPrice) {
 
 	try {
 		const response = await api.post('/rooms/add-room', formData);
-		console.log('API response:', response);
 		return response.status === 201;
 	} catch (error) {
 		console.error('API error:', error);
@@ -50,9 +57,11 @@ export const getAvailableRooms = async () => {
 export const deleteRoom = async (id) => {
 	try {
 		const response = await api.delete(`/rooms/delete-room/${id}`);
+
 		if (response.status !== 200) {
 			throw new Error(`Error deleting room: ${response.statusText}`);
 		}
+
 		return response;
 	} catch (error) {
 		throw error;
@@ -67,9 +76,11 @@ export const updateRoom = async (roomId, roomData) => {
 
 	try {
 		const response = await api.put(`/rooms/room/${roomId}`, formData);
+
 		if (response.status !== 200) {
 			throw new Error(`Error updating room: ${response.statusText}`);
 		}
+
 		return response;
 	} catch (error) {
 		throw error;
@@ -98,10 +109,18 @@ export const getRoomPhotoByRoomId = async (roomId) => {
 
 export const addBooking = async (roomId, booking) => {
 	try {
-		const response = await api.post(`/bookings/add-booking/${roomId}`, booking);
+		const formattedCheckInDate = formatDate(booking.checkInDate);
+		const formattedCheckOutDate = formatDate(booking.checkOutDate);
+
+		const response = await api.post(`/bookings/add-booking/${roomId}`, {
+			checkInDate: formattedCheckInDate,
+			checkOutDate: formattedCheckOutDate,
+		});
+
 		if (response.status !== 201) {
 			throw new Error(`Error booking room: ${response.statusText}`);
 		}
+
 		return response.data;
 	} catch (error) {
 		throw new Error('Failed to book room');
@@ -138,9 +157,11 @@ export const getBookingsByEmail = async (email) => {
 export const deleteBooking = async (bookingId) => {
 	try {
 		const response = await api.delete(`/bookings/delete-booking/${bookingId}`);
+
 		if (response.status !== 200) {
 			throw new Error(`Error deleting booking: ${response.statusText}`);
 		}
+
 		return response;
 	} catch (error) {
 		throw new Error('Failed to delete booking');
