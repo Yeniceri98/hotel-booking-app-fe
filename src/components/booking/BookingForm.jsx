@@ -3,6 +3,7 @@ import { addBooking, getRoomById } from '../utils/ApiFunctions';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import BookingSummary from './BookingSummary';
+import BookingRoomPreview from './BookingRoomPreview';
 
 const BookingForm = () => {
 	const [isValidated, setIsValidated] = useState(false);
@@ -99,7 +100,10 @@ const BookingForm = () => {
 	return (
 		<div className="container mb-5">
 			<div className="row">
-				<div className="col-md-6">
+				<div className="col-md-6 col-sm-6 col-xs-12 mt-5">
+					<BookingRoomPreview />
+				</div>
+				<div className="col-md-6 col-sm-6 col-xs-12">
 					<div className="card card-body mt-5 align-items-center">
 						<h4 className="card-title">Reserve Room</h4>
 						<Form noValidate validated={isValidated} onSubmit={handleSubmit}>
@@ -216,7 +220,7 @@ const BookingForm = () => {
 						</Form>
 					</div>
 				</div>
-				<div className="col-md-4">
+				<div className="col-md-12 col-sm-12 col-xs-12">
 					{isSubmitted && (
 						<BookingSummary
 							booking={booking}
