@@ -53,7 +53,7 @@ const BookingsTable = ({ bookingInfo, handleBookingCancellation }) => {
 							<td>
 								<button
 									className="btn btn-danger"
-									onClick={() => handleBookingCancellation(booking.id)}>
+									onClick={() => handleBookingCancellation(booking.bookingId)}>
 									Cancel Booking
 								</button>
 							</td>

@@ -26,9 +26,8 @@ const Bookings = () => {
 	const handleBookingCancellation = async (bookingId) => {
 		try {
 			await deleteBooking(bookingId);
-			setBookingInfo((prevBookings) =>
-				prevBookings.filter((booking) => booking.id !== bookingId)
-			);
+			const data = await getAllBookings();
+			setBookingInfo(data);
 		} catch (error) {
 			console.error('Error deleting booking:', error);
 		}
