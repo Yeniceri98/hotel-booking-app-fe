@@ -11,6 +11,7 @@ import RoomList from './components/rooms/RoomList';
 import Admin from './components/admin/Admin';
 import BookingForm from './components/booking/BookingForm';
 import BookingSuccess from './components/booking/BookingSuccess';
+import Bookings from './components/booking/Bookings';
 
 const App = () => {
 	return (
@@ -24,6 +25,7 @@ const App = () => {
 				<Route path="/browse-all-rooms" element={<RoomList />} />
 				<Route path="/book-room/:roomId" element={<BookingForm />} />
 				<Route path="/booking-success" element={<BookingSuccess />} />
+				<Route path="/existing-bookings" element={<Bookings />} />
 				<Route path="/admin" element={<Admin />} />
 			</Routes>
 			<Footer />
