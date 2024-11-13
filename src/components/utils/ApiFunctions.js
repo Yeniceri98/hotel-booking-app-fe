@@ -115,7 +115,13 @@ export const addBooking = async (roomId, booking) => {
 		const response = await api.post(`/bookings/add-booking/${roomId}`, {
 			checkInDate: formattedCheckInDate,
 			checkOutDate: formattedCheckOutDate,
+			guestName: booking.guestName,
+			guestEmail: booking.guestEmail,
+			numOfAdults: booking.numOfAdults,
+			numOfChildren: booking.numOfChildren,
 		});
+
+		console.log('addBooking - response:', response);
 
 		if (response.status !== 201) {
 			throw new Error(`Error booking room: ${response.statusText}`);
