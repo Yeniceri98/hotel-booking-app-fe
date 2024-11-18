@@ -17,7 +17,6 @@ const FindBooking = () => {
 		numOfAdults: 0,
 		numOfChildren: 0,
 	});
-	const [isDeleted, setIsDeleted] = useState(false);
 
 	const clearBookingInfo = {
 		bookingId: '',
@@ -58,7 +57,6 @@ const FindBooking = () => {
 			setSuccessMessage(
 				`Booking has been cancelled successfully with this confirmation code: ${bookingInfo.bookingConfirmationCode}`
 			);
-			setIsDeleted(true);
 			setConfirmationCode('');
 			setErrorMessage('');
 		} catch (error) {
