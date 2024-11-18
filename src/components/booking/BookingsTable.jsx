@@ -5,12 +5,18 @@ const BookingsTable = ({ bookingInfo, handleBookingCancellation }) => {
 	const [filteredBookings, setFilteredBookings] = useState(bookingInfo);
 
 	const filterBookings = (startDate, endDate) => {
-		const filteredBookings = bookingInfo.filter((booking) => {
-			const checkInDate = new Date(booking.checkInDate);
-			const checkOutDate = new Date(booking.checkOutDate);
-			return checkInDate >= startDate && checkOutDate <= endDate;
-		});
-		setFilteredBookings(filteredBookings);
+		let filtered = bookingInfo;
+
+		if (startDate && endDate) {
+			filtered = bookingInfo.filter((booking) => {
+				const checkInDate = new Date(booking.checkInDate);
+				const checkOutDate = new Date(booking.checkOutDate);
+				return (
+					checkInDate >= startDate && checkOutDate <= endDate && checkOutDate > startDate
+				);
+			});
+		}
+		setFilteredBookings(filtered);
 	};
 
 	useEffect(() => {
