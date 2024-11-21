@@ -46,14 +46,19 @@ export const getAllRooms = async () => {
 };
 
 export const getAvailableRooms = async (checkInDate, checkOutDate, roomType) => {
+	const formattedCheckInDate = formatDate(checkInDate);
+	const formattedCheckOutDate = formatDate(checkOutDate);
+	console.log('Room type: ', roomType);
+
 	try {
 		const response = await api.get('/rooms/available-rooms', {
 			params: {
-				checkInDate,
-				checkOutDate,
+				checkInDate: formattedCheckInDate,
+				checkOutDate: formattedCheckOutDate,
 				roomType,
 			},
 		});
+		console.log('Response data:', response.data);
 		return response.data;
 	} catch (error) {
 		throw new Error('Failed to fetch available rooms');

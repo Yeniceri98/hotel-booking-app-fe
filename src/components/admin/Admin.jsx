@@ -7,7 +7,8 @@ const Admin = () => {
 			<hr />
 			<Link to="/existing-rooms">Existing Rooms</Link>
 			<br />
-			<Link to="/existing-bookings">Existing Bookings</Link>
+			<Link to="/existing-bookings">Existing Bookings</Link> <br />
+			<Link to="/search-room">Search Booked Rooms</Link>
 		</section>
 	);
 };

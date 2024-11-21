@@ -13,6 +13,7 @@ import BookingForm from './components/booking/BookingForm';
 import BookingSuccess from './components/booking/BookingSuccess';
 import Bookings from './components/booking/Bookings';
 import FindBooking from './components/booking/FindBooking';
+import RoomSearch from './components/common/RoomSearch';
 
 const App = () => {
 	return (
@@ -28,6 +29,7 @@ const App = () => {
 				<Route path="/booking-success" element={<BookingSuccess />} />
 				<Route path="/existing-bookings" element={<Bookings />} />
 				<Route path="/find-booking" element={<FindBooking />} />
+				<Route path="/search-room" element={<RoomSearch />} />
 				<Route path="/admin" element={<Admin />} />
 			</Routes>
 			<Footer />
