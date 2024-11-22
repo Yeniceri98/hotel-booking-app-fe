@@ -35,7 +35,9 @@ const RoomSearchResult = ({ results, clearSearch }) => {
 								onPageChange={handlePageChange}
 							/>
 						)}
-						<button onClick={clearSearch}>Clear Search</button>
+						<button className="btn btn-secondary" onClick={clearSearch}>
+							Clear Search
+						</button>
 					</Row>
 				</div>
 			) : (
