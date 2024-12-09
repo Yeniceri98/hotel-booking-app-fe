@@ -14,6 +14,7 @@ import BookingSuccess from './components/booking/BookingSuccess';
 import Bookings from './components/booking/Bookings';
 import FindBooking from './components/booking/FindBooking';
 import RoomSearch from './components/common/RoomSearch';
+import Login from './components/auth/Login';
 
 const App = () => {
 	return (
@@ -31,6 +32,7 @@ const App = () => {
 				<Route path="/find-booking" element={<FindBooking />} />
 				<Route path="/search-room" element={<RoomSearch />} />
 				<Route path="/admin" element={<Admin />} />
+				<Route path="/login" element={<Login />} />
 			</Routes>
 			<Footer />
 		</Router>
