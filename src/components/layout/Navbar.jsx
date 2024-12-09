@@ -3,16 +3,29 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { useNavigate } from 'react-router-dom';
+import { logoutUser } from '../utils/ApiFunctions';
 
 const Navbar = () => {
 	const [showAccount, setShowAccount] = useState(false);
+
+	const navigate = useNavigate();
 
 	const handleAccountClick = () => {
 		setShowAccount(!showAccount);
 	};
 
 	const isLoggedIn = localStorage.getItem('token');
-	const userRole = localStorage.getItem('userRole');
+
+	const handleLogout = async () => {
+		try {
+			await logoutUser();
+			console.log('Logout successful');
+			navigate('/login');
+		} catch (error) {
+			console.error('Logout failed:', error.message);
+		}
+	};
 
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -75,8 +88,13 @@ const Navbar = () => {
 								className={`dropdown-menu text-dark ${showAccount ? 'show' : ''}`}
 								aria-labelledby="navbarDropdown">
 								{isLoggedIn ? (
-									// <Logout />
-									<p>logout</p>
+									<li>
+										<button
+											className="nav-link text-dark btn btn-link"
+											onClick={handleLogout}>
+											Logout
+										</button>
+									</li>
 								) : (
 									<li>
 										<Link to="/login" className="nav-link text-dark">
