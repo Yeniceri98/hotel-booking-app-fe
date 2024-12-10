@@ -44,7 +44,7 @@ const Registration = () => {
 				});
 			}
 		} catch (error) {
-			setErrorMessage('Registration failed! Please try again...');
+			setErrorMessage('Registration failed! Please try again...', error.message);
 			setSuccessMessage('');
 			setRegistration({
 				firstName: '',
