@@ -76,6 +76,12 @@ const Login = () => {
 				</button>
 			</form>
 			{errorMessage && <p className="alert alert-danger mt-3">{errorMessage}</p>}
+			<div className="text-center mt-3">
+				Don't have an account?{' '}
+				<a href="/register" className="text-decoration-none">
+					Register
+				</a>
+			</div>
 		</section>
 	);
 };
