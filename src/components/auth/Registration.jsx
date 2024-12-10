@@ -35,6 +35,7 @@ const Registration = () => {
 						to continue...
 					</>
 				);
+				setErrorMessage('');
 				setRegistration({
 					firstName: '',
 					lastName: '',
@@ -44,6 +45,7 @@ const Registration = () => {
 			}
 		} catch (error) {
 			setErrorMessage('Registration failed! Please try again...');
+			setSuccessMessage('');
 			setRegistration({
 				firstName: '',
 				lastName: '',
