@@ -17,6 +17,7 @@ import RoomSearch from './components/common/RoomSearch';
 import Login from './components/auth/Login';
 import Registration from './components/auth/Registration';
 import Profile from './components/auth/Profile';
+import Logout from './components/auth/Logout';
 
 const App = () => {
 	return (
@@ -35,6 +36,7 @@ const App = () => {
 				<Route path="/search-room" element={<RoomSearch />} />
 				<Route path="/admin" element={<Admin />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/logout" element={<Logout />} />
 				<Route path="/register" element={<Registration />} />
 				<Route path="/profile" element={<Profile />} />
 			</Routes>
