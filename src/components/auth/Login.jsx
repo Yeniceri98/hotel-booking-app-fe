@@ -33,11 +33,11 @@ const Login = () => {
 			const token = success.token;
 			const decodedToken = jwtDecode(token);
 			localStorage.setItem('token', token);
-			localStorage.setItem('userId', decodedToken.sub);
+			localStorage.setItem('userId', decodedToken.id);
 			localStorage.setItem('userRole', decodedToken.roles.join(','));
 			console.log('Token: ', token);
 			console.log('Decoded Token: ', decodedToken);
-			navigate('/');
+			navigate('/profile');
 		} else {
 			setErrorMessage('Invalid credentials! Please try again...');
 		}

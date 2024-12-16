@@ -16,6 +16,7 @@ import FindBooking from './components/booking/FindBooking';
 import RoomSearch from './components/common/RoomSearch';
 import Login from './components/auth/Login';
 import Registration from './components/auth/Registration';
+import Profile from './components/auth/Profile';
 
 const App = () => {
 	return (
@@ -35,6 +36,7 @@ const App = () => {
 				<Route path="/admin" element={<Admin />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Registration />} />
+				<Route path="/profile" element={<Profile />} />
 			</Routes>
 			<Footer />
 		</Router>
