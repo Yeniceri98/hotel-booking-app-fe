@@ -14,6 +14,7 @@ const formatDate = (dateString) => {
 
 export const getHeader = () => {
 	const token = localStorage.getItem('token');
+	console.log('getHeader() token: ', token);
 
 	if (!token) {
 		throw new Error('No token found. Please log in again.');
@@ -186,8 +187,9 @@ export const getBookingsByEmail = async (email) => {
 		return response.data;
 	} catch (error) {
 		throw new Error(
-			'Failed to fetch booking details with given email:',
-			error.response.data
+			`Failed to fetch booking details with given email: ${email}, Error: ${
+				error.response?.data || error.message
+			}`
 		);
 	}
 };
@@ -254,37 +256,12 @@ export const logoutUser = async () => {
 	}
 };
 
-export const getUserProfile = async (userId, token) => {
-	try {
-		const response = await api.get(`/users/${userId}`, getHeader());
-
-		if (response.status !== 200) {
-			throw new Error('Failed to fetch user profile:', response.statusText);
-		}
-
-		return response.data;
-	} catch (error) {
-		throw new Error('Failed to fetch user profile:', error.response.data);
-	}
-};
-
-export async function getUser(userId, token) {
+export async function getUserById(userId) {
 	try {
 		const response = await api.get(`/users/${userId}`, getHeader());
 		return response.data;
 	} catch (error) {
 		throw new Error('Failed to fetch user:', error.response.data);
-	}
-}
-
-export async function getBookingsByUserId(userId, token) {
-	try {
-		const response = await api.get(`/bookings/user/${userId}/bookings`, {
-			headers: getHeader(),
-		});
-		return response.data;
-	} catch (error) {
-		throw new Error('Failed to fetch bookings:', error.response.data);
 	}
 }
 
