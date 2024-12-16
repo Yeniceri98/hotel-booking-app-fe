@@ -1,18 +1,7 @@
-import { logoutUser } from '../utils/ApiFunctions';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthProvider';
 
 const Logout = () => {
-	const navigate = useNavigate();
-
-	const handleLogout = async () => {
-		try {
-			await logoutUser();
-			console.log('Logout successful');
-			navigate('/login');
-		} catch (error) {
-			console.error('Logout failed:', error.message);
-		}
-	};
+	const { handleLogout } = useAuth();
 
 	return (
 		<li>

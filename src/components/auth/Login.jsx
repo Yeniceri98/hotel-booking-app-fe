@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
-import { loginUser } from '../utils/ApiFunctions';
+import { useAuth } from '../context/AuthProvider';
 
 const Login = () => {
 	const [errorMessage, setErrorMessage] = useState('');
@@ -10,7 +8,7 @@ const Login = () => {
 		password: '',
 	});
 
-	const navigate = useNavigate();
+	const { handleLogin } = useAuth();
 
 	const handleInputChange = (e) => {
 		setLogin({
@@ -19,34 +17,19 @@ const Login = () => {
 		});
 	};
 
-	const handleLogin = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-
-		// Clear any previous login data (if exists)
-		localStorage.removeItem('token');
-		localStorage.removeItem('userId');
-		localStorage.removeItem('userRole');
-
-		const success = await loginUser(login);
-
-		if (success) {
-			const token = success.token;
-			const decodedToken = jwtDecode(token);
-			localStorage.setItem('token', token);
-			localStorage.setItem('userId', decodedToken.id);
-			localStorage.setItem('userRole', decodedToken.roles.join(','));
-			console.log('Token: ', token);
-			console.log('Decoded Token: ', decodedToken);
-			navigate('/profile');
-		} else {
-			setErrorMessage('Invalid credentials! Please try again...');
+		try {
+			await handleLogin(login);
+		} catch (error) {
+			setErrorMessage(error.message);
 		}
 	};
 
 	return (
 		<section className="container col-6 mt-5 mb-5">
 			<h1 className="text-center">Login</h1>
-			<form onSubmit={handleLogin} className="p-4 border rounded shadow-sm bg-light">
+			<form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm bg-light">
 				<div className="mb-3">
 					<label htmlFor="email" className="form-label">
 						Email
